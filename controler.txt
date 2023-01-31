@@ -1,0 +1,108 @@
+load controler => and file name and class name must be same
+<?php
+class Blog extends CI_Controller {
+
+        public function index()
+        {
+                echo 'Hello World!';
+        }
+}
+example.com/index.php/blog/ =>general link 
+
+
+The second segment of the URI determines which method in the controller gets called.
+
+Let’s try it. Add a new method to your controller:
+
+<?php
+class Blog extends CI_Controller {
+
+        public function index()
+        {
+                echo 'Hello World!';
+        }
+
+        public function comments()
+        {
+                echo 'Look at this!';
+        }
+}
+Now load the following URL to see the comment method:
+
+example.com/index.php/blog/comments/=? link
+
+
+
+
+//Uri passing in augument 
+Your method will be passed URI segments 3 and 4 (“sandals” and “123”):
+
+<?php
+class Products extends CI_Controller {
+
+        public function shoes($sandals, $id)
+        {
+                echo $sandals;
+                echo $id;
+        }
+}
+
+
+
+Defining a Default Controller in route file 
+$route['default_controller'] = 'blog';
+
+
+
+Remapping Method Calls
+syntax :
+public function _remap()
+{
+        // Some code here...
+}
+examaple
+public function _remap($method)
+{
+        if ($method === 'some_method')
+        {
+                $this->$method();
+        }
+        else
+        {
+                $this->default_method();
+        }
+}
+
+
+
+
+Class Constructors
+<?php
+class Blog extends CI_Controller {
+
+        public function __construct()
+        {
+                parent::__construct();
+                // Your own constructor code
+        }
+}
+
+
+
+
+
+
+to load view 
+$this->load->view("",$data);
+if data is present 
+data["result"]=$variableData
+$this->load->view("",$data);
+ it can accesible in view to display 
+
+
+
+
+ to load model=>
+ $this->load->model("");
+ $this->modelname->methodanme;
+ 

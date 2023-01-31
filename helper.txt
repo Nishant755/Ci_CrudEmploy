@@ -1,0 +1,40 @@
+Loading a Helper
+$this->load->helper('name');
+
+
+
+load helper exmple:
+$this->load->helper('url');
+
+multiple helper=>
+$this->load->helper(
+        array('helper1', 'helper2', 'helper3')
+);
+
+
+overrides:=>method 
+For example, to extend the native Array Helper you’ll create a file named application/helpers/MY_array_helper.php, and add or override functions:
+
+// any_in_array() is not in the Array Helper, so it defines a new function
+function any_in_array($needle, $haystack)
+{
+        $needle = is_array($needle) ? $needle : array($needle);
+
+        foreach ($needle as $item)
+        {
+                if (in_array($item, $haystack))
+                {
+                        return TRUE;
+                }
+        }
+
+        return FALSE;
+}
+
+
+
+
+
+Setting Your Own Prefix
+in config 
+$config['subclass_prefix'] = 'MY_';

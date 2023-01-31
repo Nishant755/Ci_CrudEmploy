@@ -1,0 +1,12 @@
+https://www.codeigniter.com/userguide3/general/libraries.html
+
+
+
+
+$this->load->library('class_name');//loading 
+
+
+
+
+$this->load->library('form_validation');//valiadtion
+$this->load->library(array('email', 'table'));

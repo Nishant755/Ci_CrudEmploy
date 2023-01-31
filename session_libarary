@@ -1,0 +1,98 @@
+https://www.codeigniter.com/userguide3/libraries/sessions.html
+
+
+
+
+Initializing a Session
+$this->load->library('session');
+
+
+What is Session Data?
+Session data is simply an array associated with a particular session ID (cookie).
+
+
+
+
+Retrieving Session Data
+Any piece of information from the session array is available through the $_SESSION superglobal:
+
+$_SESSION['item']
+Or through the magic getter:
+
+$this->session->item
+And for backwards compatibility, through the userdata() method:
+
+$this->session->userdata('item');
+
+
+
+
+Adding Session Data
+$this->session->set_userdata($array);
+Where $array is an associative array containing your new data. Here’s an example:
+
+$newdata = array(
+        'username'  => 'johndoe',
+        'email'     => 'johndoe@some-site.com',
+        'logged_in' => TRUE
+);
+
+$this->session->set_userdata($newdata);
+
+
+
+
+Removing Session Data
+Just as with any other variable, unsetting a value in $_SESSION can be done through unset():
+
+unset($_SESSION['some_name']);
+
+// or multiple values:
+
+unset(
+        $_SESSION['some_name'],
+        $_SESSION['another_name']
+);
+
+Exzmpl:
+$array_items = array('username', 'email');
+
+$this->session->unset_userdata($array_items);
+
+
+
+
+
+Flashdata=>CodeIgniter supports “flashdata”, or session data that will only be available for the next request, and is then automatically cleared.
+$this->session->mark_as_flash(array('item', 'item2'));//set
+
+$this->session->set_flashdata('item', 'value');//add
+
+
+
+Tempdata
+CodeIgniter also supports “tempdata”, or session data with a specific expiration time. After the value expires, or the session expires or is deleted, the value is automatically removed.
+example:
+$this->session->mark_as_temp(array('item', 'item2'), 300);
+
+// 'item' will be erased after 300 seconds, while 'item2'
+// will do so after only 240 seconds
+$this->session->mark_as_temp(array(
+        'item'  => 300,
+        'item2' => 240
+));
+
+To add tempdata:
+
+$_SESSION['item'] = 'value';
+$this->session->mark_as_temp('item', 300); // Expire in 5 minutes
+
+
+Destroying a Session
+To clear the current session (for example, during a logout), you may simply use either PHP’s session_destroy() function, or the sess_destroy() method. Both will work in exactly the same way:
+
+session_destroy();
+
+// or
+
+$this->session->sess_destroy();
